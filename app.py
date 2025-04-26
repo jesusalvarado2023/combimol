@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from rdkit import Chem
 from rdkit.Chem import AllChem
-from stmol import show_mol, render_mol
+#from stmol import show_mol, render_mol
 
 def unir_fragmentos(grupo_bloqueador, grupo_puente, grupo_direccionador):
     # Remplazar los puntos de unión [R1] y [A]
