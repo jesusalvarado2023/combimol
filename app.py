@@ -25,7 +25,7 @@ def main():
         try:
             # Mostrar la molécula
             mol = Chem.MolFromSmiles(smiles_resultante)
-            mol = Chem.AddHs(mol)
+            #mol = Chem.AddHs(mol)
             AllChem.EmbedMolecule(mol, AllChem.ETKDG())
             st.subheader("Estructura Molecular")
             show_mol(mol, width=500, height=500)
