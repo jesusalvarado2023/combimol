@@ -4,17 +4,17 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 
 def unir_fragmentos(grupo_bloqueador, grupo_puente, grupo_direccionador):
-    # Eliminar los marcadores [R1] y [A] antes de unir
-    bloqueador_limpio = grupo_bloqueador.replace("[R1]", "")
-    puente_limpio = grupo_puente.replace("[R1]", "").replace("[A]", "")
-    direccionador_limpio = grupo_direccionador.replace("[A]", "")
-
-    # Concatenar los fragmentos usando puntos
-    smiles_resultante = f"{bloqueador_limpio}.{puente_limpio}.{direccionador_limpio}"
-    return smiles_resultante
+    # Reemplazar [R1] con %11 y [A] con %10
+    bloqueador_mod = grupo_bloqueador.replace("[R1]", "")
+    puente_mod = grupo_puente.replace("[R1]", "%11").replace("[A]", "")
+    direccionador_mod = grupo_direccionador.replace("[A]", "%10")
+    
+    # Concatenar los fragmentos con puntos
+    smiles_final = f"{bloqueador_mod}.{puente_mod}.{direccionador_mod}"
+    return smiles_final
 
 def main():
-    st.title("Generador de SMILES a partir de fragmentos")
+    st.title("Generador de SMILES a partir de fragmentos con etiquetas")
 
     st.header("Entradas de fragmentos")
     grupo_bloqueador = st.text_input("Grupo Bloqueador", "[R1][Si](C1=CC=CC=C1)(C2=CC=CC=C2)C(C)(C)C")
@@ -26,7 +26,6 @@ def main():
         st.success(f"SMILES Resultante:\n{smiles_resultante}")
         
         try:
-            # Mostrar la molécula (puede ser varias moléculas separadas por '.')
             mol = Chem.MolFromSmiles(smiles_resultante)
             mol = Chem.AddHs(mol)
             AllChem.EmbedMolecule(mol, AllChem.ETKDG())
