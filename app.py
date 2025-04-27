@@ -21,8 +21,10 @@ def procesar_direccionador(texto):
     return texto
 
 def main():
-    st.title('Procesador de Grupos Químicos')
+    st.title('COMBIMOL')
 
+    st.write("Creador de molécula a partir de fragmentos.")
+    
     st.subheader('Ingrese los grupos a procesar:')
     grupo_bloqueador = st.text_input('Grupo Bloqueador', "[R1][Si](C1=CC=CC=C1)(C2=CC=CC=C2)C(C)(C)C")
     grupo_puente = st.text_input('Grupo Puente', "[A]N1C2=CC=CC(I)=C2C(C[C@@]3([H])N([R1])CC(C=C3)=O)=C1")
